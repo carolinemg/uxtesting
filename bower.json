@@ -1,0 +1,31 @@
+{
+  "name": "UXtest",
+  "description": "Testing",
+  "main": "index.js",
+  "authors": [
+    "Caroline Guilherme"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ux",
+    "test"
+  ],
+  "homepage": "caroline.ninja",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "https://github.com/twbs/bootstrap.git#^3.3.6"
+  },
+  "devDependencies": {
+    "jquery": "^2.2.0"
+  }
+}
