@@ -1,12 +1,7 @@
 var gulp = require('gulp');
-var changed = require('gulp-changed');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
-var jscs = require('gulp-jscs');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
-var gulpif = require('gulp-if');
 var less = require('gulp-less');
 
 
@@ -14,23 +9,11 @@ gulp.task('scripts', function() {
     return gulp.src('assets/js/**/*.js')
         .pipe(concat('scripts.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/js'));
+        .pipe(gulp.dest('public/scripts'));
 });
-
-gulp.task('images', function () {
-    return gulp.src('assets/images/*')
-        .pipe(changed('dist/images'))
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()]
-        }))
-        .pipe(gulp.dest('dist/images'));
-});
-
 
 gulp.task('less', function() {
-  var lessTask = gulp.src('assets/less/theme.less')
+  var lessTask = gulp.src('assets/less/style.less')
     .pipe(sourcemaps.init())
       .pipe(less())
       .on('error', function(err) {
@@ -39,7 +22,7 @@ gulp.task('less', function() {
         this.emit('end');
       })
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('public/style'));
 
   return lessTask;
 });
@@ -57,7 +40,7 @@ gulp.task('watchimage', function() {
   gulp.watch('assets/images/*', ['images']);
 });
 
-gulp.task('default', ['scripts', 'less', 'images', 'watchcss', 'watchimage' , 'watchjs' ]);
+gulp.task('default', ['scripts', 'less', 'watchcss', 'watchjs' ]);
 gulp.task('deploy', ['scripts', 'less']);
 
 
